@@ -1,5 +1,6 @@
 //Max
 package model;
+import model.Despesa;
 
 public class Conta {
 
@@ -7,14 +8,32 @@ public class Conta {
     private String cliente;
     private double saldo;
     private double limite;
+    private double saldoPoupanca;
 
     public Conta(int numero, String cliente, double saldo, double limite) {
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = saldo;
         this.limite = limite;
+        this.saldoPoupanca = 0.0;
     }
 
+    public boolean poupar(double valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            this.saldoPoupanca += valor;
+            System.out.println("R$ " + valor + " guardados na poupana com sucesso!");
+            return true;
+        } else if (valor <= 0) {
+            System.out.println("Erro: O valor para poupar deve ser maior que zero.");
+            return false;
+        } else {
+            System.out.println("Erro: Saldo insuficiente para poupar R$ " + valor);
+            return false;
+        }
+    }
+
+    
     public int getNumero() {
         return numero;
     }
@@ -46,7 +65,15 @@ public class Conta {
     public void setLimite(double limite) {
         this.limite = limite;
     }
- 
+    
+    public double getSaldoPoupanca() { 
+        return saldoPoupanca;
+    }
+    
+    public void setSaldoPoupanca(double saldoPoupanca) { 
+        this.saldoPoupanca = saldoPoupanca;
+    }
+
     public void depositar(double valor) {
         if(valor > 0) { 
             this.saldo += valor;
