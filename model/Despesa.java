@@ -10,6 +10,12 @@ public class Despesa {
     public Despesa() {
     }
 
+   public Despesa(String descricao, double valor) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.status = "Pendente";
+    }
+
     public String getDescricao() {
         return descricao;
     }
