@@ -10,6 +10,9 @@ public class Conta {
     private double limite;
     private double saldoPoupanca;
 
+    public Conta() {
+    }
+
     public Conta(int numero, String cliente, double saldo, double limite) {
         this.numero = numero;
         this.cliente = cliente;
