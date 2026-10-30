@@ -3,17 +3,18 @@ package model;
 
 public class Receita {
     
-    //atributos
     private String origem;
     private double valor;
+
+    public Receita() {
+    }
     
-    //construtor
     public Receita(String origem, double valor) {
         
         this.origem = origem;
         this.valor = valor;
     }
-    //metodos
+    
     public String getOrigem() {
         
         return this.origem;
