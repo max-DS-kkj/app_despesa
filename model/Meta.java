@@ -7,6 +7,10 @@ public class Meta {
     private double valorAlvo;
     private double valorPoupado;
 
+    public Meta() {
+    }
+
+
     public Meta(String objetivo, double valorAlvo) {
         this.objetivo = objetivo;
         this.valorAlvo = valorAlvo;
