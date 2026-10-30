@@ -7,10 +7,7 @@ public class Despesa {
     private double valor;
     private String status;
 
-    public Despesa(String descricao, double valor) {
-        this.descricao = descricao;
-        this.valor = valor;
-        this.status = "Pendente";
+    public Despesa() {
     }
 
     public String getDescricao() {
