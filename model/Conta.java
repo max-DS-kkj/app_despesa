@@ -1,17 +1,13 @@
-//Max
 package model;
+
 import model.Despesa;
 
 public class Conta {
-
     private int numero;
     private String cliente;
     private double saldo;
     private double limite;
     private double saldoPoupanca;
-
-    public Conta() {
-    }
 
     public Conta(int numero, String cliente, double saldo, double limite) {
         this.numero = numero;
@@ -25,7 +21,7 @@ public class Conta {
         if (valor > 0 && this.saldo >= valor) {
             this.saldo -= valor;
             this.saldoPoupanca += valor;
-            System.out.println("R$ " + valor + " guardados na poupana com sucesso!");
+            System.out.println("R$ " + valor + " guardados na poupança com sucesso!");
             return true;
         } else if (valor <= 0) {
             System.out.println("Erro: O valor para poupar deve ser maior que zero.");
@@ -36,7 +32,6 @@ public class Conta {
         }
     }
 
-    
     public int getNumero() {
         return numero;
     }
@@ -57,10 +52,6 @@ public class Conta {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
     public double getLimite() {
         return limite;
     }
@@ -68,24 +59,23 @@ public class Conta {
     public void setLimite(double limite) {
         this.limite = limite;
     }
-    
-    public double getSaldoPoupanca() { 
+
+    public double getSaldoPoupanca() {
         return saldoPoupanca;
     }
-    
-    public void setSaldoPoupanca(double saldoPoupanca) { 
+
+    public void setSaldoPoupanca(double saldoPoupanca) {
         this.saldoPoupanca = saldoPoupanca;
     }
 
     public void depositar(double valor) {
-        if(valor > 0) { 
+        if (valor > 0) {
             this.saldo += valor;
-            System.out.println("DEPOSITO RS" + valor + " realizado com sucesso na conta de " + cliente);
+            System.out.println("DEPÓSITO R$ " + valor + " realizado com sucesso na conta de " + cliente);
         }
     }
 
     public boolean sacar(double valor) {
-        // Uso do IF para verificar a disponibilidade financeira (Saldo + Limite)
         if (this.saldo + this.limite >= valor) {
             this.saldo = this.saldo - valor;
             System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
@@ -94,16 +84,24 @@ public class Conta {
             System.out.println("Erro: Saldo e limite insuficientes para o saque de R$ " + valor);
             return false;
         }
-    } 
-    
+    }
+
     public boolean pagarDespesa(Despesa despesa) {
-        if (despesa.getStatus().equals("Paga")) {
-            System.out.println("a despesa " + despesa.getDescricao() + " paga com sucesso");
-            return true;
-        } else {
-            System.out.println("nao foi possivel pagar a despesa " + despesa.getDescricao() + " por falta de saldo");
+        if (despesa.getStatus().equalsIgnoreCase("Paga")) {
+            System.out.println("A despesa " + despesa.getDescricao() + " já consta como paga.");
             return false;
         }
+        
+        if (this.saldo + this.limite >= despesa.getValor()) {
+            this.saldo -= despesa.getValor();
+            despesa.setStatus("Paga");
+            System.out.println("A despesa " + despesa.getDescricao() + " foi paga com sucesso! Valor debitado: R$ " + despesa.getValor());
+            return true;
+        } else {
+            System.out.println("Não foi possível pagar a despesa " + despesa.getDescricao() + " por falta de saldo/limite.");
+            return false;
+        }
+        
     }
+    
 }
-
