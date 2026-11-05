@@ -1,28 +1,26 @@
-//Gabriel Batista
 package model;
 
 public class Meta {
-
-    private String objetivo;
+    private String descricao;
     private double valorAlvo;
     private double valorPoupado;
 
-    public Meta() {
-    }
-
-
-    public Meta(String objetivo, double valorAlvo) {
-        this.objetivo = objetivo;
+    public Meta(String descricao, double valorAlvo) {
+        this.descricao = descricao;
         this.valorAlvo = valorAlvo;
         this.valorPoupado = 0.0;
     }
 
-    public String getObjetivo() {
-        return objetivo;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void adicionarValor(double valor) {
+        this.valorPoupado += valor;
     }
 
     public double getValorAlvo() {
@@ -41,3 +39,4 @@ public class Meta {
         this.valorPoupado = valorPoupado;
     }
 }
+
